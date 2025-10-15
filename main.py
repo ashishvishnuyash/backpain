@@ -10,7 +10,6 @@ from fastapi.middleware.cors import CORSMiddleware
 import yfinance as yf
 import pandas as pd
 from typing import List, Optional
-import datetime
 import uvicorn
 
 
@@ -557,7 +556,7 @@ def format_dataframe_for_json(df: pd.DataFrame):
         return []
     
     # Convert Timestamp objects in column names to strings
-    df.columns = [col.strftime('%Y-%m-%d') if isinstance(col, (pd.Timestamp, datetime.datetime)) else str(col) for col in df.columns]
+    df.columns = [col.strftime('%Y-%m-%d') if isinstance(col, (pd.Timestamp, datetime)) else str(col) for col in df.columns]
     
     df_reset = df.reset_index()
     
